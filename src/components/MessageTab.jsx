@@ -8,13 +8,13 @@ class MessageTab extends Component {
     }
     
     onMessageTabClick  = () => {
-        
+        this.props.messageTabClickParent();
     }
     
     render() {
         return(
         
-            <div className="message_tab" onClick={this.onMessageTabClick()}>
+            <div className="message_tab" onClick={this.onMessageTabClick}>
                 
                 <div>
                     <img className="message_pic" src="../me.jpg" alt="message" width="50" height="50" />

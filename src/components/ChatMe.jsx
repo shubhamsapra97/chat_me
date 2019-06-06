@@ -2,13 +2,23 @@ import React,{Component} from 'react';
 import { FaPlusCircle, FaEllipsisV, FaRegClock, FaUserFriends, FaAddressBook, FaSmile } from 'react-icons/fa';
 import UserMessageSearch from './UserMessageSearch.jsx';
 import MessageTab from './MessageTab.jsx';
-import Message from './Message.jsx';
-import MessageInput from './MessageInput.jsx';
+import MessageInput from './ChatSpace.jsx';
 
 class ChatMe extends Component {
+    
   constructor(props) {
       super(props);
+      this.state = {
+          messageOpen: false
+      };
   }
+    
+  messageTabClickParent = () => {
+      this.setState({
+          messageOpen: true
+      });
+  }
+  
   render() {
       return (
         <div className="container"> 
@@ -32,35 +42,17 @@ class ChatMe extends Component {
                 </div>
                 
                 <div className="message_tab_container">
-                    <MessageTab />
-                    <MessageTab />
-                    <MessageTab />
-                    <MessageTab />
-                    <MessageTab />
-                    <MessageTab />
-                    <MessageTab />
-                    <MessageTab />
-                    <MessageTab />
-                    <MessageTab />
-                    <MessageTab />
-                    <MessageTab />
-                    <MessageTab />
+                    <MessageTab messageTabClickParent = {this.messageTabClickParent} />
                 </div>
 
             </div>
             <div className="message-div">
-                <div className="header">
-                    <div className="header_user_info">
-                        <span className="user_status header_user_status"></span>
-                        <span>Shubham Sapra</span>
-                    </div>
-                </div>
-                <div className="message_container">
-                    <Message />
-                </div>
-                <div className="message_input_container">
-                    <MessageInput />
-                </div>
+                
+                {   this.state.messageOpen ?  
+                        <MessageInput /> 
+                        : 
+                        "Welcome to chat me"
+                }
             </div>
         </div>
       );
